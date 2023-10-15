@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Guild {
+  id         String    @id @unique
+  welcome    Welcome?
+  language   Language?
+  created_at DateTime  @default(now())
+  updated_at DateTime
+}
+
+model Language {
+  id        Int      @id @default(autoincrement())
+  guildId   String   @unique
+  language  String   @default("en")
+  guild     Guild    @relation(fields: [guildId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Welcome {
+  id        Int      @id @default(autoincrement())
+  guildId   String   @unique
+  content   String?
+  guild     Guild    @relation(fields: [guildId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

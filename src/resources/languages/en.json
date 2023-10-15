@@ -1,0 +1,73 @@
+{
+  "category": "language",
+  "name": "en",
+  "data": {
+    "error": "An error occurred while executing this command!",
+    "cooldown": {
+      "message": "Wait for {timeLeft} to use the command again!",
+      "seconds": "seconds",
+      "second": "second",
+      "milliseconds": "milliseconds"
+    },
+    "permissions": {
+      "client": "I don't have the required permission to use this command!\nPermission required: **`{permission}`**",
+      "member": "You don't have the required permission to use this command!\nPermission required: **`{permission}`**",
+      "collection": {
+        "CreateInstantInvite": "Create instant invite",
+        "KickMembers": "Kick members",
+        "BanMembers": "Ban members",
+        "Administrator": "Administrator",
+        "ManageChannels": "Manage channels",
+        "ManageGuild": "Manage guild",
+        "AddReactions": "Add reactions",
+        "ViewAuditLog": "View audit log",
+        "PrioritySpeaker": "Priority",
+        "Stream": "Stream",
+        "ViewChannel": "View channel",
+        "SendMessages": "Send messages",
+        "SendTTSMessages": "Send TTS messages",
+        "ManageMessages": "Manage messages",
+        "EmbedLinks": "Embed links",
+        "AttachFiles": "Attach files",
+        "ReadMessageHistory": "Read message history",
+        "MentionEveryone": "Mention everyone",
+        "UseExternalEmojis": "Use external emojis",
+        "ViewGuildInsights": "View guild insights",
+        "Connect": "Connect",
+        "Speak": "Speak",
+        "MuteMembers": "Mute members",
+        "DeafenMembers": "Deafen members",
+        "MoveMembers": "Move members",
+        "UseVAD": "Use vad",
+        "ChangeNickname": "Change nickname",
+        "ManageNicknames": "Manage nicknames",
+        "ManageRoles": "Manage roles",
+        "ManageWebhooks": "Manage webhooks",
+        "ManageEmojisAndStickers": "Manage emojis and stickers",
+        "ManageGuildExpressions": "Manage guild expressions",
+        "UseApplicationCommands": "Use application commands",
+        "RequestToSpeak": "Request to speak",
+        "ManageEvents": "Manage events",
+        "ManageThreads": "Manage threads",
+        "CreatePublicThreads": "Create public threads",
+        "CreatePrivateThreads": "Create private threads",
+        "UseExternalStickers": "Use external stickers",
+        "SendMessagesInThreads": "Send messages in threads",
+        "UseEmbeddedActivities": "Start embedded activities",
+        "ModerateMembers": "Moderate members",
+        "ViewCreatorMonetizationAnalytics": "View creator monetization analytics",
+        "UseSoundboard": "Use soundboard",
+        "UseExternalSounds": "Use external sounds",
+        "SendVoiceMessages": "Send voice messages"
+      }
+    },
+    "commands": {
+      "utils": {
+        "ping": {
+          "description": "Shows the latency of Miuky.",
+          "content": "**╭ Miuky Latency `...` ms\n`Cluster {Cluster}`︱Database Latency `{dbPing}` ms\n╰ API Latency `{clientPing}` ms**"
+        }
+      }
+    }
+  }
+}
