@@ -1,7 +1,7 @@
 import { FLAGS } from '../../structures/extras/Flags.js';
 
 export default {
-  name: 'guilds',
+  name: 'channels',
   async execute(client, req, res, connection) {
     try {
       let data;
@@ -11,30 +11,13 @@ export default {
           if (!req?.data?.id) {
             throw new Error(FLAGS.ERROR.NOT_DEFINED('Id'));
           }
-          data = await client.functions.fetchGuild(client, {
+
+          data = await client.functions.fetchChannel(client, {
             guildId: req?.data?.id,
+            channelId: req?.data?.channelId,
           });
 
-          const userId = req?.data?.adminId;
-          if (userId && data) {
-            if (userId === data?.ownerId) {
-              data.isAdmin = true;
-            } else {
-              const user = await client.functions.fetchPermissions(client, {
-                guildId: data?.id,
-                userId,
-              });
-
-              if (!user) {
-                throw new Error(FLAGS.UNAUTHORIZED);
-              } else if (user?.id === data?.ownerId || user) {
-                data.isAdmin = true;
-              }
-            }
-          }
-        }
-        case 'USERNAME_GET': {
-          
+          break;
         }
       }
 

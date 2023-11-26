@@ -7,28 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Guild {
-  id         String    @id @unique
-  welcome    Welcome?
-  language   Language?
+model economy {
+  id         Int      @id @default(autoincrement())
+  enabled    Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime
+  guildId    String   @unique(map: "Economy_guildId_key")
+  guild      guild    @relation(fields: [guildId], references: [id], map: "Economy_guildId_fkey")
+}
+
+model guild {
+  id         String    @id @unique(map: "Guild_id_key")
   created_at DateTime  @default(now())
   updated_at DateTime
+  economy    economy?
+  language   language?
+  welcome    welcome?
 }
 
-model Language {
-  id        Int      @id @default(autoincrement())
-  guildId   String   @unique
-  language  String   @default("en")
-  guild     Guild    @relation(fields: [guildId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model language {
+  id         Int      @id @default(autoincrement())
+  language   String   @default("en")
+  created_at DateTime @default(now())
+  updated_at DateTime
+  guildId    String   @unique(map: "Language_guildId_key")
+  guild      guild    @relation(fields: [guildId], references: [id], map: "Language_guildId_fkey")
 }
 
-model Welcome {
-  id        Int      @id @default(autoincrement())
-  guildId   String   @unique
-  content   String?
-  guild     Guild    @relation(fields: [guildId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model welcome {
+  id                    Int      @id @default(autoincrement())
+  enabled               Boolean?
+  content               String?
+  channelId             String?
+  card_enabled          Boolean?
+  card_background_color String?
+  card_background_url   String?
+  card_background_type  String?
+  card_content          String?
+  card_content_color    String?
+  card_title_color      String?
+  card_username_color   String?
+  card_avatar_color     String?
+  card_overlay          Float?
+  created_at            DateTime @default(now())
+  updated_at            DateTime
+  guildId               String   @unique(map: "Welcome_guildId_key")
+  guild                 guild    @relation(fields: [guildId], references: [id], map: "Welcome_guildId_fkey")
 }

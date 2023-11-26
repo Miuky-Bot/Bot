@@ -4,6 +4,7 @@ import { Client } from 'discord.js';
 import { Handler } from './Handler.js';
 import { Webhook } from './Webhook.js';
 import { Interaction } from './Interaction.js';
+import { WelcomeCard } from './extras/WelcomeCard.js';
 
 export class Miuky extends Client {
   /**
@@ -21,6 +22,7 @@ export class Miuky extends Client {
 
     this.cluster = new ClusterClient(this);
 
+    this.WelcomeCard = WelcomeCard;
     this.handler = new Handler(this.folders, this);
     this.webhook = new Webhook(webhookUrl);
     new Interaction(this, this.folders);
