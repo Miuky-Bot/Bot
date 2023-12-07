@@ -2,6 +2,24 @@
   "category": "language",
   "name": "en",
   "data": {
+    "date": {
+      "format": "MM/DD/YYYY",
+      "separator": "and",
+      "year": "year",
+      "years": "years",
+      "month": "month",
+      "months": "months",
+      "day": "day",
+      "days": "days",
+      "hour": "hour",
+      "hours": "hours",
+      "minute": "minute",
+      "minutes": "minutes",
+      "second": "second",
+      "seconds": "seconds",
+      "milliseconds": "millisecond",
+      "millisecond": "milliseconds"
+    },
     "error": "An error occurred while executing this command!",
     "cooldown": {
       "message": "Wait for {timeLeft} to use the command again!",
@@ -66,6 +84,98 @@
         "ping": {
           "description": "Shows the latency of Miuky.",
           "content": "**╭ Miuky Latency `...` ms\n`Cluster {Cluster}`︱Database Latency `{dbPing}` ms\n╰ API Latency `{clientPing}` ms**"
+        },
+        "help": {
+          "description": "Shows all the commands of the bot.",
+          "embed": {
+            "title": "Help Menu",
+            "description": ":mega: **Hello, having trouble using my commands?**\nNo problem, below you will find some **links** to help you!",
+            "fields": [
+              {
+                "name": ":star2: Configuration",
+                "value": " • My configuration is all done by my **[Website](https://miuky.xyz/)**, totally **simple** and made to have a **appropriate user interface**."
+              },
+              {
+                "name": ":wave: Command List",
+                "value": " • This **list** is designed to help our users understand how to use my commands, **[Command List](https://miuky.xyz/commands)**!"
+              },
+              {
+                "name": ":link: Support",
+                "value": " • If you still have any **problems** or **questions**, log on to my **[Discord](https://miuky.xyz/support)**, I will be willing to **help** you!"
+              }
+            ]
+          },
+          "buttons": [
+            {
+              "label": "Commands",
+              "url": "https://miuky.xyz/commands"
+            },
+            {
+              "label": "Support",
+              "url": "https://miuky.xyz/support"
+            },
+            {
+              "label": "Dashboard",
+              "url": "https://miuky.xyz/"
+            }
+          ],
+          "search": {
+            "error": "I couldn't find any command with that name `{command}` in my list!",
+            "name": "• **Command Name**:",
+            "cooldown": "• **Cooldown**: {number} **seconds**",
+            "category": "• **Category**:",
+            "description": "• **Description**:"
+          }
+        },
+        "avatar": {
+          "description": "Shows the profile avatar.",
+          "label": "View image",
+          "error": "I could not find any user related to"
+        },
+        "userinfo": {
+          "description": "Shows user information.",
+          "createdAt": "Joined Discord ago",
+          "joinedAt": "Joined Guild ago",
+          "premiumSince": "Boosting ago",
+          "roles": "Roles",
+          "error": "I could not find any user related to"
+        },
+        "servericon": {
+          "description": "Shows server icon.",
+          "label": "View image",
+          "available": "The guild is currently not available!",
+          "error": "I could not find any guilds related to"
+        }
+      },
+      "fun": {
+        "interact": {
+          "description": "<kiss | hug | pat | poke | slap | tickle>",
+          "error": "I could not find any user related to",
+          "errorResponse": "An error occurred while executing this command!",
+          "kiss": {
+            "response": "**{author}** kissed **{member}**",
+            "repeat": "**{member}** kissed you, **{author}**"
+          },
+          "hug": {
+            "response": "**{author}** hugged **{member}**",
+            "repeat": "**{member}** hugged you, **{author}**"
+          },
+          "pat": {
+            "response": "**{author}** caressed **{member}**",
+            "repeat": "**{member}** caressed you, **{author}**"
+          },
+          "poke": {
+            "response": "**{author}** poked **{member}**",
+            "repeat": "**{member}** poked you, **{author}**"
+          },
+          "slap": {
+            "response": "**{author}** slapped **{member}**",
+            "repeat": "**{member}** slapped you, **{author}**"
+          },
+          "tickle": {
+            "response": "**{author}** tickled **{member}**",
+            "repeat": "**{member}** tickled you, **{author}**"
+          }
         }
       }
     }

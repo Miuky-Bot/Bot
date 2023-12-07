@@ -4,9 +4,10 @@ export default {
   name: 'buttonCreate',
   once: false,
   async execute(client, interaction) {
+    const buttonInteraction = client.interactions.get(interaction?.customId);
+    if (!buttonInteraction) return;
+
     await interaction.deferUpdate();
-    client.functions.wait(4000);
-    console.log(client.functions.wait(4000));
 
     if (interaction?.message?.interaction && interaction?.guildId) {
       const command = client.commands.get(
@@ -75,6 +76,10 @@ export default {
             });
     }
 
-    console.log('ok');
+    try {
+      return await buttonInteraction.execute(client, interaction);
+    } catch (err) {
+      console.log(err);
+    }
   },
 };

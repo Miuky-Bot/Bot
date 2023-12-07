@@ -36,10 +36,19 @@ export default {
       }
 
       if (dbGuild?.card_enabled) {
+        const dbGuildLanguage = await client.prisma.language.findUnique({
+          where: {
+            guildId,
+          },
+        });
+
         const cardContent = dbGuild?.card_content;
 
         const CreateWelcomeCard = new client.WelcomeCard()
-          .setTitle('Bem-vindo', dbGuild?.card_title_color)
+          .setTitle(
+            dbGuildLanguage?.language === 'pt_BR' ? 'Bem-vindo' : 'Welcome',
+            dbGuild?.card_title_color
+          )
           .setUsername(member?.user?.username, dbGuild?.card_username_color)
           .setDescription(
             cardContent

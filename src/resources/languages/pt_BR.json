@@ -2,6 +2,24 @@
   "category": "language",
   "name": "pt_BR",
   "data": {
+    "date": {
+      "format": "DD/MM/YYYY",
+      "separator": "e",
+      "year": "ano",
+      "years": "anos",
+      "month": "mês",
+      "months": "meses",
+      "day": "dia",
+      "days": "dias",
+      "hour": "hora",
+      "hours": "horas",
+      "minute": "minuto",
+      "minutes": "minutos",
+      "second": "segundo",
+      "seconds": "segundos",
+      "milliseconds": "milissegundos",
+      "millisecond": "milissegundo"
+    },
     "error": "Ocorreu um erro durante a execução deste comando!",
     "cooldown": {
       "message": "Espere {timeLeft} para usar o comando novamente!",
@@ -64,8 +82,100 @@
     "commands": {
       "utils": {
         "ping": {
-          "description": "Mostra a latência do Miuky.",
+          "description": "Mostra a latência do Miuky!",
           "content": "**╭ Latência da Miuky `...` ms\n`Cluster {Cluster}`︱Latência do Banco de dados `{dbPing}` ms\n╰ Latência da API `{clientPing}` ms**"
+        },
+        "help": {
+          "description": "Mostra todos os comandos do bot!",
+          "embed": {
+            "title": "Menu de Ajuda",
+            "description": ":mega: **Olá, tendo dificuldades em usar os meus comandos?**\nSem problemas, abaixo encontrará alguns **links** para o ajudar!",
+            "fields": [
+              {
+                "name": ":star2: Configuração",
+                "value": " • A minha configuração é toda feita pelo meu **[Website](https://miuky.xyz/pt-BR/)**, totalmente **simples** e feito para ter uma **interface de usuário adequada**."
+              },
+              {
+                "name": ":wave: Lista de Comandos",
+                "value": " • Esta **lista** foi concebida para ajudar os nossos usuários a compreender como utilizar os meus comandos, **[Lista de Comandos](https://miuky.xyz/pt-BR/commands)**!"
+              },
+              {
+                "name": ":link: Suporte",
+                "value": " • Se ainda tiver quaisquer **problemas** ou **perguntas**, entre no meu **[Discord](https://miuky.xyz/pt-BR/support)**, estarei disposta a te **ajudar**!"
+              }
+            ]
+          },
+          "buttons": [
+            {
+              "label": "Comandos",
+              "url": "https://miuky.xyz/pt-BR/commands"
+            },
+            {
+              "label": "Suporte",
+              "url": "https://miuky.xyz/pt-BR/support"
+            },
+            {
+              "label": "Painel de Controle",
+              "url": "https://miuky.xyz/pt-BR/"
+            }
+          ],
+          "search": {
+            "error": "Não consegui encontrar nenhum comando com esse nome `{command}` na minha lista!",
+            "name": "• **Nome do Comando**:",
+            "cooldown": "• **Tempo de espera**: {number} **segundos**",
+            "category": "• **Categoria**:",
+            "description": "• **Descrição**:"
+          }
+        },
+        "avatar": {
+          "description": "Mostra o seu avatar de perfil!",
+          "label": "Ver imagem",
+          "error": "Não consegui encontrar nenhum usuário relacionado à"
+        },
+        "userinfo": {
+          "description": "Mostra as informações do usuário!",
+          "createdAt": "Entrou no Discord há",
+          "joinedAt": "Entrou no servidor há",
+          "premiumSince": "Impulsionando há",
+          "roles": "Cargos",
+          "error": "Eu não encontrei nenhum usuário relacionado à "
+        },
+        "servericon": {
+          "description": "Mostra o ícone do servidor!",
+          "label": "Ver imagem",
+          "available": "O servidor não está disponível no momento!",
+          "error": "Não consegui encontrar nenhum servidor relacionado à"
+        }
+      },
+      "fun": {
+        "interact": {
+          "description": "<kiss | hug | pat | poke | slap | tickle>",
+          "error": "Eu não encontrei nenhum usuário relacionado à ",
+          "errorResponse": "Ocorreu um erro durante a execução deste comando!",
+          "kiss": {
+            "response": "**{author}** deu um beijo em **{member}**",
+            "repeat": "**{member}** te beijou, **{author}**"
+          },
+          "hug": {
+            "response": "**{author}** deu um abraço em **{member}**",
+            "repeat": "**{member}** te abraçou, **{author}**"
+          },
+          "pat": {
+            "response": "**{author}** acariciou **{member}**",
+            "repeat": "**{member}** te acariciou, **{author}**"
+          },
+          "poke": {
+            "response": "**{author}** cutucou **{member}**",
+            "repeat": "**{member}** te cutucou, **{author}**"
+          },
+          "slap": {
+            "response": "**{author}** deu um tapa em **{member}**",
+            "repeat": "**{member}** te deu um tapa, **{author}**"
+          },
+          "tickle": {
+            "response": "**{author}** fez côcegas em **{member}**",
+            "repeat": "**{member}** te fez côcegas, **{author}**"
+          }
         }
       }
     }

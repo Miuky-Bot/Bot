@@ -108,8 +108,8 @@ export default {
 
 function formatCooldownTime(timeLeft, language) {
   if (timeLeft >= 1) {
-    return `${timeLeft.toFixed(0)} ${language.cooldown.seconds}`;
+    return `${timeLeft.toFixed(0)} ${language.seconds}`;
   } else {
-    return `${(timeLeft * 1000).toFixed(2)} ${language.cooldown.milliseconds}`;
+    return `${(timeLeft * 1000).toFixed(2)} ${language.milliseconds}`;
   }
 }

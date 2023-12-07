@@ -5,8 +5,8 @@ import { resolve } from 'path';
 export class Interaction {
   constructor(client, folders) {
     this.client = client;
-    this.folder = folders?.interaction;
-    async () => await this.loadInteractions();
+    this.folder = folders?.interactions;
+    this.loadInteractions();
 
     client.on(Events.InteractionCreate, async (interaction) => {
       client.webhook.message({
@@ -31,7 +31,7 @@ export class Interaction {
     const database =
       (await this.client.prisma.language.findUnique({
         where: {
-          guildId: interaction.guildId,
+          guildId: interaction?.guildId,
         },
       })) || 'en';
 
@@ -81,16 +81,16 @@ export class Interaction {
             `file:///${interactionsDir}/${dir.name}/${file}`
           );
 
-          if ('execute' in command)
-            this.client.interactions.set(interaction?.name, command);
+          if ('execute' in interaction)
+            this.client.interactions.set(interaction?.name, interaction);
         }
       } else {
         const { default: interaction } = await import(
           `file:///${interactionsDir}/${dir.name}`
         );
 
-        if ('execute' in command)
-          this.client.interactions.set(interaction?.name, command);
+        if ('execute' in interaction)
+          this.client.interactions.set(interaction?.name, interaction);
       }
     }
   }

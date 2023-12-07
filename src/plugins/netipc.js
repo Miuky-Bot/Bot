@@ -23,7 +23,7 @@ export default {
       }
 
       client.netIpc = new Server({
-        port: 3002,
+        port: 7655, // local change to 3002,
         tls: true,
         options: {
           pskCallback: (socket, identity) => {
