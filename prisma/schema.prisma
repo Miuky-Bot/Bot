@@ -7,22 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model economy {
-  id         Int      @id @default(autoincrement())
-  enabled    Boolean  @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime
-  guildId    String   @unique(map: "Economy_guildId_key")
-  guild      guild    @relation(fields: [guildId], references: [id], map: "Economy_guildId_fkey")
-}
-
 model guild {
   id         String    @id @unique(map: "Guild_id_key")
   created_at DateTime  @default(now())
   updated_at DateTime
-  economy    economy?
   language   language?
+  premium    premium?
   welcome    welcome?
+}
+
+model premium {
+  id         String    @id @unique
+  created_at DateTime  @default(now())
+  ended_at   DateTime
+  timestamp  DateTime?
+  guildId    String    @unique
+  guild      guild     @relation(fields: [guildId], references: [id])
 }
 
 model language {
@@ -52,5 +52,8 @@ model welcome {
   created_at            DateTime @default(now())
   updated_at            DateTime
   guildId               String   @unique(map: "Welcome_guildId_key")
+  role_enabled          Boolean?
+  role_ids              Json?
+  role_bot_ids          Json?
   guild                 guild    @relation(fields: [guildId], references: [id], map: "Welcome_guildId_fkey")
 }

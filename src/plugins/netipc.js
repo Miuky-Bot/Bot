@@ -23,7 +23,7 @@ export default {
       }
 
       client.netIpc = new Server({
-        port: 7655, // local change to 3002,
+        port: 3002, // local change to 3002 | prodution change to 7655,
         tls: true,
         options: {
           pskCallback: (socket, identity) => {
@@ -35,7 +35,6 @@ export default {
       });
 
       client.netIpc.on('request', async (req, res, connection) => {
-        console.log(req);
         if (!req.type) return;
 
         const request = requests.get(req.type);
