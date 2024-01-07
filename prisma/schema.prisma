@@ -37,11 +37,11 @@ model language {
 model welcome {
   id                    Int      @id @default(autoincrement())
   enabled               Boolean?
-  content               String?
+  content               String?  @db.LongText
   channelId             String?
   card_enabled          Boolean?
   card_background_color String?
-  card_background_url   String?
+  card_background_url   String?  @db.LongText
   card_background_type  String?
   card_content          String?
   card_content_color    String?
