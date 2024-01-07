@@ -10,11 +10,11 @@ export class Interaction {
 
     client.on(Events.InteractionCreate, async (interaction) => {
       client.webhook.message({
-        content: `\`\`\`js\nType: ${interaction.type}\nUserId: ${
-          interaction.user.id
-        }\nGuildId: ${interaction.guildId || null}\nCommand: ${
-          interaction.commandName ||
-          interaction.message.interaction.commandName ||
+        content: `\`\`\`js\nType: ${interaction?.type}\nUserId: ${
+          interaction?.user.id
+        }\nGuildId: ${interaction?.guildId || null}\nCommand: ${
+          interaction?.commandName ||
+          interaction?.message?.interaction?.commandName ||
           null
         }\`\`\``,
       });
@@ -27,7 +27,7 @@ export class Interaction {
     });
   }
 
-  async components(interaction) {
+  async components(interaction, isMessageEvent) {
     const database =
       (await this.client.prisma.language.findUnique({
         where: {
@@ -35,14 +35,18 @@ export class Interaction {
         },
       })) || 'en';
 
-    if (
-      interaction.guildId === null ||
-      interaction.appPermissions.has(
-        PermissionsBitField.Flags.UseExternalEmojis
+    if (!isMessageEvent) {
+      if (
+        interaction.guildId === null ||
+        interaction.appPermissions.has(
+          PermissionsBitField.Flags.UseExternalEmojis
+        )
       )
-    )
-      interaction.emoji = this.client.res.custom;
-    else interaction.emoji = this.client.res.unicode;
+        interaction.emoji = this.client.res.custom;
+      else interaction.emoji = this.client.res.unicode;
+    } else {
+      interaction.emoji = this.client.res.unicode;
+    }
 
     return (interaction.language = this.client.res[database?.language || 'en']);
   }

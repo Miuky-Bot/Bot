@@ -27,6 +27,20 @@
       "second": "second",
       "milliseconds": "milliseconds"
     },
+    "mention": {
+      "content": "👋 Hello! my prefix is **``/``** (Slash)",
+      "buttons": [
+        {
+          "label": "Help!",
+          "customId": "mention_action",
+          "emoji": "✨"
+        },
+        {
+          "label": "Website",
+          "url": "https://miuky.xyz/"
+        }
+      ]
+    },
     "permissions": {
       "client": "I don't have the required permission to use this command!\nPermission required: **`{permission}`**",
       "member": "You don't have the required permission to use this command!\nPermission required: **`{permission}`**",

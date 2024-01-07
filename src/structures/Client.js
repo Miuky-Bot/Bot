@@ -27,7 +27,7 @@ export class Miuky extends Client {
     this.Embed = Embed;
     this.handler = new Handler(this.folders, this);
     this.webhook = new Webhook(webhookUrl);
-    new Interaction(this, this.folders);
+    this.interaction = new Interaction(this, this.folders);
   }
 
   /**
