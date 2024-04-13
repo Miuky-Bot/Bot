@@ -43,6 +43,7 @@ export default {
         return await request.execute(client, req, res, connection);
       });
 
+      client.netIpc.on('connect', (client) => console.log(client?.id));
       client.netIpc.start().catch((err) => {
         client.debug(
           `net-ipc: ${err.options.port} | Connection: ${err.message}!`
