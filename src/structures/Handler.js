@@ -141,9 +141,15 @@ export class Handler {
         }
       }
 
+      const inDevelopment =
+        process.env.NODE_ENV === 'development' ? true : false;
       this.client.once(
         Events.ClientReady,
-        async () => await this.client.application.commands.set(restCommands)
+        async () =>
+          await this.client.application.commands.set(
+            restCommands,
+            inDevelopment ? process.env.GUILD_ID : null
+          )
       );
     }
 
