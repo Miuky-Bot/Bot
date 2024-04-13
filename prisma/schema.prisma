@@ -3,45 +3,38 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model guild {
-  id         String    @id @unique(map: "Guild_id_key")
-  created_at DateTime  @default(now())
-  updated_at DateTime
-  language   language?
-  premium    premium?
-  welcome    welcome?
+  id           String        @id @unique
+  language     String        @default("en")
+  created_at   DateTime      @default(now())
+  updated_at   DateTime
+  premium      premium?
+  welcomeDM    welcomeDM?
+  welcomeGuild welcomeGuild?
 }
 
 model premium {
-  id         String    @id @unique
+  id         Int       @id @default(autoincrement())
+  guild_id   String    @unique
+  expire_at  DateTime?
   created_at DateTime  @default(now())
-  ended_at   DateTime
-  timestamp  DateTime?
-  guildId    String    @unique
-  guild      guild     @relation(fields: [guildId], references: [id])
-}
-
-model language {
-  id         Int      @id @default(autoincrement())
-  language   String   @default("en")
-  created_at DateTime @default(now())
   updated_at DateTime
-  guildId    String   @unique(map: "Language_guildId_key")
-  guild      guild    @relation(fields: [guildId], references: [id], map: "Language_guildId_fkey")
+  guild      guild     @relation(fields: [guild_id], references: [id])
 }
 
-model welcome {
+model welcomeDM {
   id                    Int      @id @default(autoincrement())
+  guild_id              String   @unique
   enabled               Boolean?
-  content               String?  @db.LongText
-  channelId             String?
+  content               String?
+  content_type          String?
   card_enabled          Boolean?
   card_background_color String?
-  card_background_url   String?  @db.LongText
+  card_background_url   String?
   card_background_type  String?
   card_content          String?
   card_content_color    String?
@@ -49,11 +42,58 @@ model welcome {
   card_username_color   String?
   card_avatar_color     String?
   card_overlay          Float?
+  embed_author_name     String?
+  embed_author_url      String?
+  embed_author_icon_url String?
+  embed_title           String?
+  embed_url             String?
+  embed_color           String?
+  embed_description     String?
+  embed_thumbnail_url   String?
+  embed_fields          Json?
+  embed_image_url       String?
+  embed_footer_text     String?
+  embed_footer_icon_url String?
   created_at            DateTime @default(now())
   updated_at            DateTime
-  guildId               String   @unique(map: "Welcome_guildId_key")
+  embed_timestamp       Boolean?
+  guild                 guild    @relation(fields: [guild_id], references: [id])
+}
+
+model welcomeGuild {
+  id                    Int      @id @default(autoincrement())
+  guild_id              String   @unique(map: "Welcome_guild_id_key")
+  enabled               Boolean?
+  channel_id            String?
+  content               String?
+  content_type          String?
+  card_enabled          Boolean?
+  card_background_color String?
+  card_background_url   String?
+  card_background_type  String?
+  card_content          String?
+  card_content_color    String?
+  card_title_color      String?
+  card_username_color   String?
+  card_avatar_color     String?
+  card_overlay          Float?
+  embed_author_name     String?
+  embed_author_url      String?
+  embed_author_icon_url String?
+  embed_title           String?
+  embed_url             String?
+  embed_color           String?
+  embed_description     String?
+  embed_thumbnail_url   String?
+  embed_fields          Json?
+  embed_image_url       String?
+  embed_footer_text     String?
+  embed_footer_icon_url String?
   role_enabled          Boolean?
   role_ids              Json?
   role_bot_ids          Json?
-  guild                 guild    @relation(fields: [guildId], references: [id], map: "Welcome_guildId_fkey")
+  created_at            DateTime @default(now())
+  updated_at            DateTime
+  embed_timestamp       Boolean?
+  guild                 guild    @relation(fields: [guild_id], references: [id], map: "Welcome_guild_id_fkey")
 }
