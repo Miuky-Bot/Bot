@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/structures/Cluster.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node  ./src/structures/Cluster.js"
+    "start": "set NODE_ENV=production&node ./src/structures/Cluster.js",
+    "dev": "set NODE_ENV=development&nodemon ./src/structures/Cluster.js"
   },
   "keywords": [
     "Discord",
@@ -17,8 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@napi-rs/canvas": "^0.1.44",
-    "@prisma/client": "^5.2.0",
-    "@resvg/resvg-js": "^2.6.0",
+    "@prisma/client": "^5.11.0",
     "axios": "^1.6.1",
     "discord-hybrid-sharding": "^2.1.3",
     "discord.js": "^14.14.1",
@@ -26,7 +25,10 @@
     "joi": "^17.10.1",
     "moment": "^2.29.4",
     "nekos.life": "^3.0.0",
-    "net-ipc": "^2.1.0",
-    "prisma": "^5.2.0"
+    "net-ipc": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "prisma": "^5.11.0"
   }
 }
