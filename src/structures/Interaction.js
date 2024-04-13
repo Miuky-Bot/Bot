@@ -29,11 +29,11 @@ export class Interaction {
 
   async components(interaction, isMessageEvent) {
     const database =
-      (await this.client.prisma.language.findUnique({
+      (await this.client.prisma.guild.findUnique({
         where: {
-          guildId: interaction?.guildId,
+          id: interaction?.guildId,
         },
-      })) || 'en';
+      })?.language) || 'en';
 
     if (!isMessageEvent) {
       if (
