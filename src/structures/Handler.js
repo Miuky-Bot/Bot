@@ -15,6 +15,8 @@ export class Handler {
 
   async init() {
     const { commands, events, functions, plugins, resources } = this.folders;
+    const inDevelopment = process.env.NODE_ENV === 'development' ? true : false;
+    const inProduction = process.env.NODE_ENV === 'production' ? true : false;
 
     if (plugins && resolve(plugins)) {
       const pluginsDir = resolve(plugins);
@@ -121,8 +123,16 @@ export class Handler {
             );
 
             if ('data' in command && 'execute' in command) {
-              this.client.commands.set(command?.data?.name, command);
-              restCommands.push(command?.data?.toJSON());
+              if (command?.isDevOnly && inDevelopment) {
+                restCommands.push(command?.data?.toJSON());
+                this.client.commands.set(command?.data?.name, command);
+              }
+
+              if (!command?.isDevOnly) {
+                restCommands.push(command?.data?.toJSON());
+                this.client.commands.set(command?.data?.name, command);
+              }
+
               this.client.debug(`name: ${command?.data?.name}`);
             } else
               this.client.debug(`name: ${command?.data?.name} ERROR DETECTED`);
@@ -133,22 +143,28 @@ export class Handler {
           );
 
           if ('data' in command && 'execute' in command) {
-            this.client.commands.set(command?.data?.name, command);
-            restCommands.push(command?.data?.toJSON());
+            if (command?.isDevOnly && inDevelopment) {
+              restCommands.push(command?.data?.toJSON());
+              this.client.commands.set(command?.data?.name, command);
+            }
+
+            if (!command?.isDevOnly) {
+              restCommands.push(command?.data?.toJSON());
+              this.client.commands.set(command?.data?.name, command);
+            }
+
             this.client.debug(`name: ${command?.data?.name}`);
           } else
             this.client.debug(`name: ${command?.data?.name} ERROR DETECTED`);
         }
       }
 
-      const inDevelopment =
-        process.env.NODE_ENV === 'development' ? true : false;
       this.client.once(
         Events.ClientReady,
         async () =>
           await this.client.application.commands.set(
             restCommands,
-            inDevelopment ? process.env.GUILD_ID : null
+            inProduction ? null : process.env.GUILD_ID
           )
       );
     }

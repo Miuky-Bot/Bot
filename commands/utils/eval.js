@@ -8,9 +8,12 @@ export default {
     .addStringOption((option) =>
       option.setName('code').setDescription('JavaScript code to evaluate')
     ),
+  isDevOnly: true,
   category: 'utils',
   async execute(client, interaction) {
+    if (interaction.user.id !== process.env.DEVELOPER) return;
     const code = interaction.options.getString('code');
+
     if (!code) {
       return interaction.reply({
         content: '❌ Please provide JavaScript code to evaluate.',
